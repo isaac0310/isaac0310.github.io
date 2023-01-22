@@ -30,6 +30,8 @@
         var ref = firebase.database().ref('users');
         ref.on('value', function (snapshot) {
             var users = snapshot.val();
+            console.log('-=USERS=-');
+            console.log(users);
             var list = document.getElementById("users-list");
             for (var user in users) {
                 var li = document.createElement("li");
