@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>My GitHub Page</title>
-  </head>
-  <body>
-    <h1>Welcome to my GitHub Page!</h1>
-    <p>This is a sample webpage hosted on GitHub Pages.</p>
-    <ul>
-      <li>You can use it to share information about yourself or your projects.</li>
-      <li>You can also use it to host simple web apps or single-page apps.</li>
-      <li>It supports HTML, CSS, and JavaScript.</li>
-    </ul>
-  </body>
+
+<head>
+    <title>Firebase Realtime Database Example</title>
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-database.js"></script>
+    <script>
+        // Initialize Firebase
+        var firebaseConfig = {
+            apiKey: "AIzaSyBUNAGBZ6IXbopLDfpqEQxdBsE2dA_N9j8",
+            authDomain: "halinhub-app.firebaseapp.com",
+            databaseURL: "https://halinhub-app-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "halinhub-app",
+            storageBucket: "halinhub-app.appspot.com",
+            messagingSenderId: "495601855540",
+            appId: "1:495601855540:web:3c0f369116799f5fd1ee61",
+            measurementId: "G-XD6Z33WV2P"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+
+<body>
+    <h1>Firebase Realtime Database Example</h1>
+    <ul id="users-list"></ul>
+    <script>
+        // Read items from the database and display them in a list
+        var ref = firebase.database().ref('users');
+        ref.on('value', function (snapshot) {
+            var users = snapshot.val();
+            var list = document.getElementById("users-list");
+            for (var user in users) {
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(users[user].name));
+                list.appendChild(li);
+            }
+        });
+
+    </script>
+</body>
+
 </html>
