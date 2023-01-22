@@ -1,1 +1,37 @@
-test
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Firebase Realtime Database Example</title>
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-database.js"></script>
+    <script type="text/javascript" src="config.js"></script>
+
+</head>
+
+<body>
+    <h1>Firebase Realtime Database Example</h1>
+    <ul id="users-list"></ul>
+    <script>
+        // Read items from the database and display them in a list
+        firebase.database.enableLogging(true);
+
+        var ref = firebase.database().ref('users');
+        console.log('-=ref=-');
+        console.log(ref);
+        ref.on('value', function (snapshot) {
+            var users = snapshot.val();
+            console.log('-=USERS=-');
+            console.log(users);
+            var list = document.getElementById("users-list");
+            for (var user in users) {
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(users[user].name));
+                list.appendChild(li);
+            }
+        });
+
+    </script>
+</body>
+
+</html>
