@@ -26,6 +26,7 @@
     <ul id="users-list"></ul>
     <script>
         // Read items from the database and display them in a list
+        alert('test 123');
         var ref = firebase.database().ref('users');
         ref.on('value', function (snapshot) {
             var users = snapshot.val();
